@@ -1,0 +1,19 @@
+import mongoose from "mongoose";
+import user from "../models/user.js";
+const { Schema } = mongoose;
+
+const objectiveSchema = new Schema({
+    title: String,
+    createdby: {
+        type: Schema.Types.ObjectId,
+        ref: "user"
+    },
+    members: [{
+        type: Schema.Types.ObjectId,
+        ref: "user"
+    }]
+}, { timestamps: true });
+
+const Objective = mongoose.model("objective", objectiveSchema);
+
+export default Objective;
