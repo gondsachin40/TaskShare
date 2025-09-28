@@ -7,5 +7,5 @@ const taskRouter = express.Router();
 taskRouter.post('/create', middle, create);
 taskRouter.post('/addmember', middle, addmember);
 taskRouter.post('/accept', middle, accept);
-taskRouter.post('/addtask', addtask)
+taskRouter.post('/addtask',middle, addtask)
 export default taskRouter;
