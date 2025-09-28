@@ -28,7 +28,7 @@ export default async function login(req, res) {
             { expiresIn: 60 * 60 }
         );
 
-        res.cookie('token', token, { maxAge: 60 * 60 * 1000, httpOnly: true });
+        res.cookie('token', token, { maxAge: 60 * 60 * 1000, httpOnly: true, sameSite: 'lax' });
         res.status(200).json({ username: username, token: token });
     } catch (err) {
         res.status(500).send('Error: ' + err.message);

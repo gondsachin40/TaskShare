@@ -13,9 +13,9 @@ const objectiveSchema = new Schema({
         ref: "user"
     }]
     ,
-    tasks:[{
-        type:Schema.Types.ObjectId,
-        ref:"task"
+    tasks: [{
+        type: Schema.Types.ObjectId,
+        ref: "task"
     }]
 }, { timestamps: true });
 
