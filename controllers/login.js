@@ -29,8 +29,7 @@ export default async function login(req, res) {
         );
 
         res.cookie('token', token, { maxAge: 60 * 60 * 1000, httpOnly: true });
-        res.status(200).json(token);
-        // res.status(200).send('Login successfully');
+        res.status(200).json({ username: username, token: token });
     } catch (err) {
         res.status(500).send('Error: ' + err.message);
     }
