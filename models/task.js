@@ -13,15 +13,13 @@ const taskSchema = new Schema({
     },
     links:{
        type: [String],
-
     },
     tasksId: {
         type: Schema.Types.ObjectId,
-        required:true
+        required:true,
+    
     }
     ,
-}, { timestamps: true });
-
+}, { timestamps: true },{_id:false});
 const task = mongoose.model("tasks", taskSchema);
-
 export default task;

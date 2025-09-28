@@ -12,6 +12,11 @@ const objectiveSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "user"
     }]
+    ,
+    tasks:[{
+        type:Schema.Types.ObjectId,
+        ref:"task"
+    }]
 }, { timestamps: true });
 
 const Objective = mongoose.model("objective", objectiveSchema);
