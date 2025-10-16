@@ -12,5 +12,5 @@ taskRouter.post('/accept', middle, accept);
 taskRouter.post('/addtask', addtask)
 taskRouter.get('/all', middle, alltask)
 taskRouter.get('/:id', middle, gettask);
-
+taskRouter.get('/gettask/:id',middle,gettask)
 export default taskRouter;

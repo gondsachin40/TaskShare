@@ -20,6 +20,7 @@ export default async function gettask(req, res) {
             const curr = await Task.findById(y).lean();
             tasks.push(curr)
         }
+        console.log("Retrieved tasks:", tasks);
         res.status(200).json({ tasks });
     } catch (err) {
         console.error("Error in alltask:", err);
