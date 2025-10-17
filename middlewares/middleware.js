@@ -4,7 +4,7 @@ import user from "../models/user.js";
 async function middle(req, res, next) {
     try {
         console.log('Middleware executed');
-
+        console.log(req.cookies)
         let token = req.cookies?.token;
 
         if (!token) {
@@ -19,7 +19,6 @@ async function middle(req, res, next) {
         if (!token) {
             return res.status(401).send('Access denied. No token provided.');
         }
-
         const payload = jwt.verify(token, process.env.JWT_SECRET);
         const { _id } = payload;
 
@@ -35,6 +34,7 @@ async function middle(req, res, next) {
         }
 
         req.user = result;
+        console.log('middleware success');
         next();
     } catch (err) {
         console.error('Middleware error:', err);
