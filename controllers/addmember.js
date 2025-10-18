@@ -75,3 +75,33 @@ export async function accept(req, res) {
         res.status(500).send('Error: ' + err.message);
     }
 }
+export async function reject(req, res) {
+    try {
+        const { objectiveId } = req.body;
+        const userId = req.user._id;
+
+        if (!objectiveId || !objectiveId.match(/^[0-9a-fA-F]{24}$/)) {
+            return res.status(400).json({ msg: "Invalid objective ID format" });
+        }
+
+        const objective = await Objective.findById(objectiveId);
+        if (!objective) {
+            return res.status(404).json({ msg: "Objective not found" });
+        }
+
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        const isInvited = user.invitations.some(invId => invId.toString() === objectiveId);
+        if (!isInvited) {
+            return res.status(400).json({ msg: "No pending invitation for this objective" });
+        }
+        user.invitations = user.invitations.filter(invId => invId.toString() !== objectiveId)
+        await user.save()
+        res.status(200).json({ msg: "Invitation rejected", user });
+    } catch (err) {
+        res.status(500).send('Error: ' + err.message);
+    }
+}
