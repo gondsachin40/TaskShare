@@ -13,15 +13,17 @@ export default async function getObjective(req, res) {
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-        const otjectinfo = await Objective.findById(objectID);
+        const objectinfo = await Objective.findById(objectID);
         const tasks = [];
-        const x = otjectinfo.tasks;
+        const x = objectinfo.tasks;
+        const createdby = objectinfo.createdby;
+        const members = objectinfo.members;
         for (let y of x) {
             const curr = await Task.findById(y).lean();
             tasks.push(curr)
         }
         console.log("Retrieved tasks:", tasks);
-        res.status(200).json({ tasks });
+        res.status(200).json({ tasks , createdby , members});
     } catch (err) {
         console.error("Error in alltask:", err);
         res.status(500).json({ message: "Internal server error" });
