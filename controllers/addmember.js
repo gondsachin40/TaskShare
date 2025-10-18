@@ -43,8 +43,8 @@ export async function accept(req, res) {
             return res.status(400).json({ msg: "Invalid objective ID format" });
         }
 
-        const objectiveExists = await Objective.findById(objectiveId);
-        if (!objectiveExists) {
+        const objective = await Objective.findById(objectiveId);
+        if (!objective) {
             return res.status(404).json({ msg: "Objective not found" });
         }
 
@@ -63,8 +63,12 @@ export async function accept(req, res) {
         }
 
         user.invitations = user.invitations.filter(invId => invId.toString() !== objectiveId);
-
         await user.save();
+
+        if (!objective.members.some(memberId => memberId.toString() === userId.toString())) {
+            objective.members.push(userId);
+            await objective.save();
+        }
 
         res.status(200).json({ msg: "Accepted successfully", user });
     } catch (err) {
