@@ -25,10 +25,10 @@ export default async function login(req, res) {
         const token = jwt.sign(
             { _id: user._id, username: username },
             process.env.JWT_SECRET,
-            { expiresIn: 60 * 60 }
+            { expiresIn: 60 * 60 * 10000}
         );
 
-        res.cookie('token', token, { maxAge: 60 * 60 * 1000, httpOnly: true, sameSite: 'lax' });
+        res.cookie('token', token, { maxAge: 60 * 60 * 10000, httpOnly: true, sameSite: 'lax' });
         res.status(200).json({ username: username, token: token });
     } catch (err) {
         res.status(500).send('Error: ' + err.message);
