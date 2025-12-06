@@ -11,6 +11,7 @@ import editTask from '../controllers/editTask.js';
 import deleteTask from '../controllers/deleteTask.js';
 import getMembers from '../controllers/getmembers.js';
 import getUser from '../controllers/getUser.js';
+import updateTaskStatus from '../controllers/updateTaskStatus.js'; // Import the new controller
 const taskRouter = express.Router();
 
 //Create Objective
@@ -25,6 +26,7 @@ taskRouter.get('/getTask/:id', middle, getTask);
 taskRouter.get('/getMembers/:id',middle,getMembers)
 taskRouter.get('/getUser/:id',middle,getUser)
 taskRouter.post('/editTask/:id', middle, editTask);
+taskRouter.post('/updateTaskStatus/:id', middle, updateTaskStatus); // New route for updating task status
 
 taskRouter.post('/deleteTask/:id', middle, deleteTask);
 export default taskRouter;

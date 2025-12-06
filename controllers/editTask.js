@@ -9,11 +9,12 @@ export default async function editTask(req, res) {
             return res.status(404).json({ message: "Task not found" });
         }
 
-        const { taskTitle, taskDescription, links } = req.body;
+        const { taskTitle, taskDescription, links, completed } = req.body;
 
         if (taskTitle !== undefined) task.taskTitle = taskTitle;
         if (taskDescription !== undefined) task.taskDescription = taskDescription;
         if (links !== undefined) task.links = links;
+        if (completed !== undefined) task.completed = completed; // Update completed status
 
         await task.save();
 

@@ -1,4 +1,6 @@
 import express from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
 import main from './database/database.js'
 import authRouter from './routes/userAuth.routes.js';
 import taskRouter from './routes/Task.routes.js';
@@ -9,8 +11,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:4200',  // Allow requests only from this origin
-    methods: ['GET', 'POST'],        // Allow only GET and POST methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow only 'Content-Type' header
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],        // Allow common HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Allow necessary headers
     credentials: true
 }));
 app.get('/', (req, res) => {

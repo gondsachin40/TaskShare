@@ -18,6 +18,10 @@ const taskSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
 
+    },
+    completed: {
+        type: Boolean,
+        default: false,
     }
     ,
 }, { timestamps: true }, { _id: false });

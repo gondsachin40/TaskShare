@@ -1,5 +1,4 @@
-import mongoose, { mongo } from 'mongoose';
-const { Schema } = mongoose;
+import mongoose from 'mongoose';
 import * as dotenv from 'dotenv';
 dotenv.config();
 const url = process.env.URL;
