@@ -19,6 +19,8 @@ async function middle(req, res, next) {
         if (!token) {
             return res.status(401).send('Access denied. No token provided.');
         }
+
+        console.log('JWT_SECRET (first 5 chars):', process.env.JWT_SECRET ? process.env.JWT_SECRET.substring(0, 5) : 'NOT_SET'); // Log first few chars for security
         const payload = jwt.verify(token, process.env.JWT_SECRET);
         const { _id } = payload;
 
