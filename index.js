@@ -10,7 +10,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-    origin: 'https://frontendoftaskshare.onrender.com/',  // Allow requests only from this origin
+    origin: 'https://frontendoftaskshare.onrender.com',  // Allow requests only from this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],        // Allow common HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Allow necessary headers
     credentials: true
